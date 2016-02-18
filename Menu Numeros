@@ -1,0 +1,83 @@
+#include <iostream>
+#include <conio.h>
+#include<stdlib.h>
+
+using namespace std;
+
+int contadorDig (int a) {
+	int c=0;
+		while (a>0) {
+			a=a/10;
+				c++;
+		}
+
+	return (c);
+
+}
+
+int contadorSuma (int n) {
+	int s=0,d;
+	
+		while (n>0){
+
+	d = n%10;
+	
+			if(d%2!=0){
+		
+			s = s+d;
+	}
+			n=n/10;
+}
+
+	return (s);
+}
+
+int cambioPosicion (int p)
+{
+	int h=0,m;
+	while (p>0)
+	{
+		m=p%10;
+		h= h*10+m;
+		p=p/10;
+
+	}
+	return (p);
+}
+
+void main() {
+	int a,r,opcion;
+system ("color 3A" );
+do{
+	cout<<"Introducir un numero natural: ";
+	cin>> a;
+	if(a <=0){
+		cout<<endl<<"Error..!!-Introduzca un numero Natural\n";
+	}
+}while(a <=0);
+
+do{
+	cout<<endl<<endl<<"<<<--*-*-*-*-*-*-*-*-*-MENU--*-*-*-*-*-*-*-*-*->>";
+	cout<<endl<<"------1. - CONTAR DIGITOS------";
+	cout<<endl<<"------2. - Sumar Digitos impares------";
+	cout<<endl<<"------3. - Invertir Digitos------";
+	cout<<endl<<"------0. - Salir------";
+	cout<<endl<<"------Seleccione una opcion Por favor: ------ ";
+	cin>>opcion;
+	switch(opcion){
+		case 1: r= contadorDig(a);
+				cout<<"La cantidad de digitos es: "<<r;
+				break;
+		case 2:r= contadorSuma(a); 
+				cout<<"La suma de digitos es: " <<r;
+				break;
+		case 3: r= cambioPosicion (a);
+				cout<< "El numero invertido es:  "<<r;
+				break;
+	}
+			}while(opcion!=0);
+	
+	getch();
+
+
+}
