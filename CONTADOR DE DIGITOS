@@ -1,0 +1,32 @@
+#include <iostream>
+#include <conio.h>
+#include<stdlib.h>
+
+using namespace std;
+
+int contadorDig (int a) {
+	int c=0;
+		while (a>0) {
+			a=a/10;
+				c++;
+		}
+
+	return (c);
+
+}
+
+void main() {
+
+	int a,r;
+system ("color 9A" );
+
+	cout<<"introducir un numero natural: ";
+	cin>> a;
+
+	r=contadorDig(a);
+
+	cout<<"La cantidad de digitos es: "<<r;
+
+	getch();
+
+	}
