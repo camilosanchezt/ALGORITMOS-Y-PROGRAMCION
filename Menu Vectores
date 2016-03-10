@@ -1,0 +1,80 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+void cargar (int vec[], int n){
+	int i;
+	for (i=0; i<n; i++){
+		cout<<"Introducir elementos: "<<endl;
+		cin>> vec[i];
+	}
+}
+
+void mostrar(int vec[], int n){
+	int i;
+		for (i=0; i<n; i++) {
+			cout<<endl<< "                                        "<<endl;
+			cout<<endl<< "VEC["<<i<<" ]-----------> : "<<vec[i]<<endl;
+		}
+}
+
+void cargarElemImpar (int vA[], int nA, int vB[], int &nB) {
+	int i; 
+	nB=0;
+		for(i=0; i<nA; i++){
+			if (vA[i]%2!=0){
+				vB[nB]=vA[i];
+				nB++;
+			}
+		}
+}
+
+bool verifExiste (int vec[], int n, int elem){
+	int i;
+	bool k=false;
+		for (i=0; i<n; i++){
+			if(vec[i]==elem){
+				k=true;
+
+			i = n;
+			}
+		}
+	return (k);
+
+}
+
+int frecElem (int vec[], int n, int elem){
+	int i, c;
+		for (i=0; i<n; i++){
+			if (vec[i]==elem){
+				c++;
+			}
+		}
+	return (c);
+}
+
+void elemRepit(int vA[], int nA, int vB[], int &nB) {
+	int i;
+	nB=0;
+		for (i=0; i<nA; i++){
+			if(((frecElem(vA,nA,vA[i])>1))&&(verifExiste(vB,nB, vA[i]==false))) {
+				vB[nB]=vA[i];
+				nB++;
+			}
+		}
+}
+
+	void main () {
+		int vec[25],vB[25], nB ,n;
+		cout<<" Cuantos elementos desea? : "<<endl;
+		cin>> n;
+		cargar (vec, n);
+		mostrar (vec, n);
+		cargarElemImpar(vec, n, vB, nB);
+		
+		mostrar (vB, nB);
+	getch();
+
+}
+	
