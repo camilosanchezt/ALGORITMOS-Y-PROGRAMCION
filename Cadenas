@@ -1,0 +1,64 @@
+# ALGORITMOS-Y-PROGRAMCION
+#include<iostream>
+#include<conio.h>
+#include<string.h>
+using namespace std;
+
+struct regAlumno 
+{	char nom[30];
+	char sexo;
+	int nota;
+};
+struct regMateria 
+{	char nomMat[30];
+	int nroAlumnos;
+	regAlumno vAlum[20];
+};
+struct regCarrera
+{	char nomCarrera[30];
+	int nroMaterias;
+	regMateria vMat[20];
+};
+
+void cargar(regCarrera v[],int n)
+{ int i,k,q;
+	for(i=0;i<n;i++)//carga carrera
+		{	
+			cout<<endl<<"introducir nombre Carrera : ";
+			do{
+			gets(v[i].nomCarrera);
+			} while (strlen(v[i].nomCarrera)==0);// valida que no se deje en blaco sin valor 
+			cout<<"introducir nro de Materias : ";
+			cin>>v[i].nroMaterias;
+			for(k=0;k<v[i].nroMaterias;k++)// carga materias
+				{
+					cout<<"nombre de materias";
+					do{
+						gets(v[i].vMat[k].nomMat);}
+					while(strlen(v[i].vMat[k].nomMat)==0);// valida que no se deje en blanco o sin valor
+				cout<<"Numero de alumnos para esta materia";
+				cin>>v[i].vMat[k].nroAlumnos;
+				for(q=0;q<v[i].vMat[k].nroAlumnos;q++)// carga alumnos
+					{
+						cout<<"Nombre de alumno";
+						do{
+							gets(v[i].vMat[k].vAlum[q].nom);
+						}while(strlen(v[i].vMat[k].vAlum[q].nom)==0);//valida vacios
+						cout<<"sexo f/m";
+						cin>>v[i].vMat[k].vAlum[q].sexo;
+						cout<<"Nota";
+						cin>>v[i].vMat[k].vAlum[q].nota;
+				}
+				}
+		}
+}
+
+
+void main()
+{int nroCarreras;
+		regCarrera vecUniv[20];
+		regAlumno  vec[20];
+		cout<<"cuantos carreras";
+		cin>>nroCarreras;
+		cargar(vecUniv,nroCarreras);
+getch();}
