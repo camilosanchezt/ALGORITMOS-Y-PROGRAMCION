@@ -1,0 +1,60 @@
+#include<iostream>
+#include<conio.h>
+#include<string.h>
+
+
+using namespace std;
+
+struct tvxp {
+	int svec[20];
+};
+
+void cargar (tvxp vecM[], int n) {
+	int i,j;
+		for(i=0;i<n;i++){
+			for(j=0;j<n;j++){
+				cout<<"Introducir los numeros: ";
+				cin>> vecM[i].svec[j];
+			}
+		}
+}
+
+
+void mostrar (tvxp vecM[], int n){ 
+	int i,j;
+		for (i=0;i<n;i++) {
+			for (j=0;j<n;j++) {
+				cout<< vecM[j].svec[i];
+			}
+			cout<<"\n";
+		}
+}
+
+int sumadevec (tvxp vecM[], int n){
+	int i,j,s=0;
+		for(i=0;i<n;i++){
+			for(j=0;j<n;j++){
+				while(i<j){
+			s = s + vecM[i].svec[j];
+			}
+		}
+		}
+	return (s);
+}
+
+
+
+
+void main(){
+	int n;
+	tvxp vecM [20];
+	cout<<"Introducir elementos: ";
+	cin>>n;
+
+	cargar (vecM, n);
+	mostrar (vecM ,n);
+	sumadevec (vecM,n);
+	
+getch();
+
+}
