@@ -1,0 +1,77 @@
+#include<iostream>
+#include<conio.h>
+
+using namespace std;
+
+#define FIL 10
+#define COL 10
+
+void cargar(int mat[FIL][COL],int &n,int m){
+	int i,j;
+		for(i=0;i<n;i++){
+			for(j=0;j<m;j++){
+				cout<<"Introducir el numero de la mat: ["<<i<<","<<j<<"] : ";
+				cin>>mat[i][j];
+			}
+		}
+}
+void mostrar(int mat[FIL][COL],int &n,int m){
+	int i,j;
+		cout<<"la matriz queda de la siguente forma*******: '\n";
+		for(i=0;i<n;i++){
+			for(j=0;j<m;j++){
+				cout<<mat[i][j]<<"  ";
+			}
+			cout<<endl;
+		}
+}
+
+
+bool verifiPrimo(int n){
+	bool k = true;
+	int i;
+	for (i=2;i<n;i++){
+		if(n%i == 0){
+			k = true;
+		}
+	}
+	return (k);
+
+}
+
+void eliminarfilprimo(int mat[FIL][COL],int &n,int m){
+	int i,j,w;
+	bool k;
+		for(i=0;i<n;i++){
+			k = true;
+				for(j=0;j<m;j++){
+					if (verifiPrimo(mat[i][j]) == false){
+						k = false;
+					}
+				}
+			if(k == true){
+				for(w=0;w<n;w++){
+					for(j=0;j<n;j++){
+						mat[w][j] = mat[w+1][j];
+					}
+				}
+			n--;
+			i--;
+			}
+		}
+}
+
+
+void main(){
+	int mat[FIL][COL],n,m;
+	cout<<"Inserte el numero de filas: "<<endl;
+	cin>>n;
+	cout<<"Inseter el numero de columnas"<<endl;
+	cin>>m;
+
+	cargar(mat,n,m);
+	mostrar (mat,n,m);
+	eliminarfilprimo(mat,n,m);
+	getch();
+
+}
