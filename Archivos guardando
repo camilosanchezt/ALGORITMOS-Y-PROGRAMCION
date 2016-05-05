@@ -1,0 +1,115 @@
+#include <iostream>
+#include <conio.h>
+#include <stdio.h>
+#include<stdlib.h>
+
+struct regAmigos{
+	char nombre [30];
+	char sexo ;
+	int edad;
+	char estado;
+};
+
+using namespace std;
+
+void crearArchivo(char nombreArchivo[]){
+	FILE *ptr;
+	ptr = fopen ("amigos.dat","wb");
+	fclose(ptr);
+}
+void addArchivo(){
+	FILE *ptr;
+	
+	regAmigos amigo1;
+	cout<<"Introducir nombre de la persona: "<<endl<<endl;
+	do{
+		gets(amigo1.nombre);
+	}while (strlen(amigo1.nombre) == 0);
+	do{
+		cout<<"Introducir sexo de la persona F/M: "<<endl<<endl;
+		cin>>amigo1.sexo;
+	} while ((amigo1.sexo != 'F' ) && (amigo1.sexo != 'M'));
+		do{
+		cout<<"Introducir edad de la persona: "<<endl<<endl;
+		cin>>amigo1.edad;
+	}  while ((amigo1.edad<0 )||(amigo1.edad > 150));
+		
+	amigo1.estado = 'A';
+
+	ptr = fopen ("amigos.dat","ab");
+	
+	fwrite(&amigo1,sizeof(amigo1),1,ptr);
+
+	fclose(ptr);
+}
+
+void mostraramigos(){
+	FILE *ptr;
+	
+	regAmigos amigo1;
+	int c=0;
+	ptr = fopen ("amigos.dat","rb");
+	if (ptr != NULL){
+		cout<<"\n°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°";
+		cout<<"\n-------------------REPORTE DE PERSONAS-----------------------------------";
+		cout<<"\n°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°";
+		cout<<"\n Nro. Registro.------	Nombre.-------	Edad.-------	Sexo.";
+		cout<<"\n°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°";
+		cout<<endl;
+		fread(&amigo1,sizeof(amigo1),1,ptr);
+	
+	while(feof(ptr)== false){
+		c++;
+		if(amigo1.estado == 'A'){
+			cout<< "°°°°°°°" << c++ <<"°°°°°°°" << "		"<<amigo1.nombre<<"		"<<amigo1.edad<<"		";
+			if (amigo1.sexo == 'M' )
+				cout<<"Maculino";
+		} else {
+			
+			cout<<"Femenino";
+		}
+		cout<<"\n=========================================================================";
+		cout<<"\n=========================================================================";
+		cout<<"\n=========================================================================";
+		cout<<endl;
+		cout<<endl;
+		fread(&amigo1,sizeof(amigo1),1,ptr);
+	}
+		fclose(ptr);
+	}else {
+		cout<<"Error el archivo no existe!!!"<<endl;
+	}
+}
+
+
+void main(){
+	system ("color 1B" );
+	int opcion;
+	do{
+	cout<<"\n=========================";
+	cout<<endl;
+	cout<<"******MENU********"<<endl;
+	cout<<"1.Crear Archivo"<<endl;
+	cout<<"2.Añadir Archivo"<<endl;
+	cout<<"3.Mostrar Datos"<<endl;
+	cout<<"0.Cerrar";
+	cout<<"\n=========================";
+	cout<<endl;
+	cout<<"Seleccione Una Opcion:"<<endl;
+	cin>>opcion;
+
+	switch (opcion){
+
+	case 1:
+		crearArchivo("Amigos.dat");break;
+	case 2:
+		addArchivo();break;
+	case 3:
+		mostraramigos(); break;
+	case 0:
+		cout<<"Salir"<<endl; break;
+	}
+	}while (opcion != 0);
+
+	getch();
+}
